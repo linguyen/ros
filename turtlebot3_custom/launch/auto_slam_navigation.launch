@@ -1,0 +1,18 @@
+<launch>
+    <!-- Start robot_state_publisher once -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+    <!-- Launch the custom SLAM node -->
+    <include file="$(find turtlebot3_custom)/launch/custom_turtlebot3_slam.launch" />
+
+    <!-- Delay to allow SLAM to start -->
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+
+    <!-- Launch the custom navigation stack -->
+    <include file="$(find turtlebot3_custom)/launch/custom_turtlebot3_navigation.launch" />
+
+    <!-- Run the autonomous navigation script -->
+    <node pkg="turtlebot3_custom" type="autonomous_navigation.py" name="autonomous_navigation" output="screen"/>
+</launch>

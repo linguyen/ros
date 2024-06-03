@@ -1,0 +1,8 @@
+prefix=/home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/devel
+
+Name: turtlebot3_custom
+Description: Description of turtlebot3_custom
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

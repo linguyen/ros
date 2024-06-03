@@ -1,0 +1,4 @@
+rosrun turtlesim turtlesim_node __name:=/turtle1
+rosservice call /turtle1/telesport_absolute 0 5.544445 0.0
+rosservice call /spawn 12 5.544445 3.1 /turtle2
+rosservice call /turtle2/telesport_absolute 12 5.544445 3.1

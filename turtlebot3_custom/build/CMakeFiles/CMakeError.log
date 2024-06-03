@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_28dbe/fast"
+/usr/bin/make -f CMakeFiles/cmTC_28dbe.dir/build.make CMakeFiles/cmTC_28dbe.dir/build
+make[1]: Entering directory '/home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_28dbe.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_28dbe.dir/CheckSymbolExists.c.o   -c /home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_28dbe
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28dbe.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_28dbe.dir/CheckSymbolExists.c.o  -o cmTC_28dbe 
+CMakeFiles/cmTC_28dbe.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_28dbe.dir/build.make:97: recipe for target 'cmTC_28dbe' failed
+make[1]: *** [cmTC_28dbe] Error 1
+make[1]: Leaving directory '/home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_28dbe/fast' failed
+make: *** [cmTC_28dbe/fast] Error 2
+
+File /home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_21cbe/fast"
+/usr/bin/make -f CMakeFiles/cmTC_21cbe.dir/build.make CMakeFiles/cmTC_21cbe.dir/build
+make[1]: Entering directory '/home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_21cbe.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_21cbe.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_21cbe
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21cbe.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_21cbe.dir/CheckFunctionExists.c.o  -o cmTC_21cbe -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_21cbe.dir/build.make:97: recipe for target 'cmTC_21cbe' failed
+make[1]: *** [cmTC_21cbe] Error 1
+make[1]: Leaving directory '/home/minhtuannguyenwsu/catkin_ws/src/turtlebot3_custom/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_21cbe/fast' failed
+make: *** [cmTC_21cbe/fast] Error 2
+
+

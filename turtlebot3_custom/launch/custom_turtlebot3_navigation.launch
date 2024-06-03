@@ -1,0 +1,9 @@
+<launch>
+    <!-- Include the turtlebot3_navigation.launch file -->
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+        <!-- Exclude the robot_state_publisher node -->
+        <arg name="map_file" value="$(env HOME)/my_map.yaml"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="publish_tf" value="false"/>
+    </include>
+</launch>

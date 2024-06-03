@@ -1,0 +1,8 @@
+<launch>
+    <!-- Include the turtlebot3_slam.launch file -->
+    <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+        <!-- Exclude the robot_state_publisher node -->
+        <arg name="use_sim_time" value="true"/>
+        <arg name="publish_tf" value="false"/>
+    </include>
+</launch>

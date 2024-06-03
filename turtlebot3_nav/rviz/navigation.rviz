@@ -1,0 +1,27 @@
+# RViz configuration to visualize robot and navigation
+
+# Global Options
+Global Options:
+  Fixed Frame: map
+  Background Color: [48, 48, 48]
+
+# Robot Model
+RobotModel:
+  Enabled: true
+
+# Map
+Map:
+  Topic: /map
+  Color Scheme: map
+
+# LaserScan
+LaserScan:
+  Topic: /scan
+  Size: 0.1
+
+# Path
+Path:
+  Topic: /move_base/NavfnROS/plan
+  Color: [0, 0, 1, 1]
+  Line Style: Lines
+  Line Width: 0.05

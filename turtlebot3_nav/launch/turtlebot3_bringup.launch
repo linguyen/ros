@@ -1,0 +1,4 @@
+<launch>
+  <!-- Include the TurtleBot3 bringup -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
+</launch>

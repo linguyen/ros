@@ -1,0 +1,46 @@
+# Global Costmap Parameters
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_frequency: 1.0
+  publish_frequency: 0.5
+  static_map: true
+
+# Local Costmap Parameters
+local_costmap:
+  global_frame: odom
+  robot_base_frame: base_footprint
+  update_frequency: 5.0
+  publish_frequency: 2.0
+  rolling_window: true
+  width: 3.0
+  height: 3.0
+  resolution: 0.05
+  static_map: false
+
+# Trajectory Planner Parameters
+TrajectoryPlannerROS:
+  max_vel_x: 0.3
+  min_vel_x: 0.1
+  max_rotational_vel: 1.0
+  min_in_place_rotational_vel: 0.4
+  acc_lim_th: 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 2.5
+  yaw_goal_tolerance: 0.05
+  xy_goal_tolerance: 0.10
+  latch_xy_goal_tolerance: true
+  sim_time: 1.0
+  sim_granularity: 0.02
+  vx_samples: 20
+  vtheta_samples: 40
+  path_distance_bias: 32.0
+  goal_distance_bias: 24.0
+  occdist_scale: 0.01
+  heading_lookahead: 0.325
+  heading_scoring: false
+  heading_scoring_timestep: 0.8
+  dwa: true
+  publish_cost_grid_pc: true
+  global_frame_id: map
+  robot_base_frame_id: base_footprint

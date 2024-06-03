@@ -1,0 +1,7 @@
+<launch>
+  <!-- Load Move Base parameters -->
+  <rosparam file="$(find turtlebot3_nav)/param/move_base_params.yaml" command="load"/>
+
+  <!-- Start Move Base -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen"/>
+</launch>

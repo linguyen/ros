@@ -1,0 +1,13 @@
+<launch>
+  <!-- Start the TurtleBot3 simulation in Gazebo -->
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+
+  <!-- Start AMCL for localization -->
+  <include file="$(find turtlebot3_custom)/launch/amcl.launch"/>
+
+  <!-- Start move_base -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+  </node>
+</launch>
