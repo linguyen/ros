@@ -18,3 +18,18 @@
   </include>
 
 </launch>
+
+<launch>
+
+  <!-- Load the move_base node -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+
+    <!-- Arguments for move_base node -->
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+    <!-- Add any other parameters as needed -->
+
+  </node>
+
+</launch>
