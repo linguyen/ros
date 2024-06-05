@@ -1,1 +1,69 @@
-test
+#!/usr/bin/env python
+
+import rospy
+from geometry_msgs.msg import PoseWithCovarianceStamped, Twist
+import math
+
+class RobotController:
+    def __init__(self, robot_name):
+        self.robot_name = robot_name
+        self.current_pose = None
+        self.target_pose = None
+        self.twist_pub = rospy.Publisher(robot_name + '/cmd_vel', Twist, queue_size=10)
+        rospy.Subscriber(robot_name + '/amcl_pose', PoseWithCovarianceStamped, self.pose_callback)
+
+    def pose_callback(self, msg):
+        self.current_pose = msg.pose.pose
+
+    def set_target_pose(self, target_pose):
+        self.target_pose = target_pose
+
+    def move_to_target_pose(self):
+        rate = rospy.Rate(10)  # 10 Hz
+        while not rospy.is_shutdown():
+            if self.current_pose is not None and self.target_pose is not None:
+                # Calculate linear and angular velocities to move towards the target pose
+                linear_vel = 0.2  # Adjust as needed
+                angular_vel = 0.5  # Adjust as needed
+
+                # Calculate linear distance and angle to the target
+                dx = self.target_pose.position.x - self.current_pose.position.x
+                dy = self.target_pose.position.y - self.current_pose.position.y
+                linear_distance = math.sqrt(dx ** 2 + dy ** 2)
+                target_angle = math.atan2(dy, dx)
+                current_angle = math.atan2(
+                    2 * (self.current_pose.orientation.w * self.current_pose.orientation.z),
+                    1 - 2 * (self.current_pose.orientation.z ** 2)
+                )
+                angular_distance = target_angle - current_angle
+
+                # Publish Twist message
+                twist_msg = Twist()
+                twist_msg.linear.x = linear_vel if linear_distance > 0.1 else 0.0
+                twist_msg.angular.z = angular_vel if abs(angular_distance) > 0.1 else 0.0
+                self.twist_pub.publish(twist_msg)
+
+                # Check if the robot has reached close to the target pose
+                if linear_distance < 0.1 and abs(angular_distance) < 0.1:
+                    rospy.loginfo("Robot {} reached the target pose.".format(self.robot_name))
+                    break
+
+            rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        rospy.init_node('robot_controller')
+        robot1_controller = RobotController('robot1')
+        robot2_controller = RobotController('robot2')
+
+        # Set the target pose for robot1
+        target_pose = PoseWithCovarianceStamped()
+        target_pose.pose.pose.position.x = 1.0  # Set target x position
+        target_pose.pose.pose.position.y = 1.0  # Set target y position
+        robot1_controller.set_target_pose(target_pose.pose.pose)
+
+        # Move robot1 to the target pose
+        robot1_controller.move_to_target_pose()
+
+    except rospy.ROSInterruptException:
+        pass
