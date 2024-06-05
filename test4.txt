@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import rospy
+from geometry_msgs.msg import PoseStamped
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+import actionlib
+import math
+
+def move_to_goal(x, y):
+    # Create goal
+    goal = MoveBaseGoal()
+    goal.target_pose.header.frame_id = "map"
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose.position.x = x
+    goal.target_pose.pose.position.y = y
+    goal.target_pose.pose.orientation.w = 1.0  # Forward orientation
+
+    # Send goal to move_base
+    move_base_client.send_goal(goal)
+    move_base_client.wait_for_result()
+
+if __name__ == '__main__':
+    try:
+        rospy.init_node('user_input_movement')
+
+        # Initialize move_base client
+        move_base_client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+        move_base_client.wait_for_server()
+
+        # Get user input for goal coordinates
+        while not rospy.is_shutdown():
+            x_str = raw_input("Enter X coordinate for the goal (e.g., 1.0): ")
+            y_str = raw_input("Enter Y coordinate for the goal (e.g., 2.0): ")
+
+            try:
+                x = float(x_str)
+                y = float(y_str)
+                move_to_goal(x, y)
+            except ValueError:
+                rospy.logwarn("Invalid input. Please enter numeric values.")
+
+    except rospy.ROSInterruptException:
+        pass
