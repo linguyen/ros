@@ -1,0 +1,5 @@
+ <!-- Relay move_base topics for robot1 -->
+  <node name="move_base_relay_robot1" pkg="topic_tools" type="relay" args="/robot1/move_base/goal /robot1/move_base/cancel /robot1/move_base/feedback /robot1/move_base/status /robot1/move_base/result /robot1/move_base/local_costmap/footprint /robot1/move_base/local_costmap/costmap /robot1/move_base/global_costmap/footprint /robot1/move_base/global_costmap/costmap"/>
+
+  <!-- Relay move_base topics for robot2 -->
+  <node name="move_base_relay_robot2" pkg="topic_tools" type="relay" args="/robot2/move_base/goal /robot2/move_base/cancel /robot2/move_base/feedback /robot2/move_base/status /robot2/move_base/result /robot2/move_base/local_costmap/footprint /robot2/move_base/local_costmap/costmap /robot2/move_base/global_costmap/footprint /robot2/move_base/global_costmap/costmap"/>
